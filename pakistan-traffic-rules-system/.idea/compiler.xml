@@ -2,12 +2,14 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="qa" />
         <module name="user" />
+        <module name="auth" />
         <module name="audit" />
         <module name="gateway" />
         <module name="traffic" />
@@ -29,6 +31,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="audit" options="" />
+      <module name="auth" options="" />
       <module name="common" options="" />
       <module name="gateway" options="" />
       <module name="qa" options="" />

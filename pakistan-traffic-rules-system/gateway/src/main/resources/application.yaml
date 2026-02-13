@@ -2,8 +2,6 @@
 server:
   port: 8083
 
-
-
 spring:
   application:
     name: gateway
@@ -13,12 +11,60 @@ spring:
 
   cloud:
     gateway:
-      discovery:
-        locator:
-          enabled: true
-          lower-case-service-id: true
+      server:
+        webflux:
+          discovery:
+            locator:
+              enabled: true # this discover all services auto like qa, user, traffic
+              lower-case-service-id: true
+
 
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
+
+
+# for monitory health and status of each service
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info
+
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+
+
+# we can also define services manually like this
+#spring:
+#  cloud:
+#    gateway:
+#      routes:
+#        - id: user-service
+#          uri: lb://user-service
+#          predicates:
+#            - Path=/api/users/**
+#          filters:
+#            - StripPrefix=1
+#
+#        - id: traffic-service
+#          uri: lb://traffic-service
+#          predicates:
+#            - Path=/api/traffic/**
+#          filters:
+#            - StripPrefix=1
+#
+#        - id: audit-service
+#          uri: lb://audit-service
+#          predicates:
+#            - Path=/api/audit/**
+#          filters:
+#            - StripPrefix=1
+
+
+
+
+

@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import com.pts.common.enums.UserRole;
 import java.util.UUID;
 
 @Data
@@ -36,6 +37,10 @@ public class User {
     @NotBlank(message = "Email is required")
     @Column(unique = true)
     private String email;
+
+    @NotBlank(message = "Password is required")
+    @Column(nullable = false)
+    private String password;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

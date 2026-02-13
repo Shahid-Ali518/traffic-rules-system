@@ -10,3 +10,15 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
+
+
+# for monitory health and status of each service
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info
+
+  endpoint:
+    health:
+      show-details: ALWAYS

@@ -17,6 +17,9 @@
         <module>traffic</module>
         <module>audit</module>
         <module>qa</module>
+        <module>auth</module>
+
+
     </modules>
 
     <properties>

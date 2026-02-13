@@ -1,7 +1,6 @@
-package com.pts.user.entity;
+package com.pts.common.enums;
 
 public enum UserRole {
     CITIZEN,
-    OFFICER,
     ADMIN
 }
