@@ -12,7 +12,7 @@ import javax.crypto.SecretKey;
 import java.util.Date;
 import java.util.function.Function;
 
-@Service
+
 public class JwtUtil {
 
     public static final long EXPIRATION_TIME = 1000L * 60 * 60; // FOR  1 days
@@ -25,6 +25,7 @@ public class JwtUtil {
     }
 
 
+    // create token
     public String createToken(UserDTO user, String loginMethod){
 
         return Jwts.builder()

@@ -4,27 +4,25 @@ package com.pts.auth.feign;
 import com.pts.common.dto.ApiResponse;
 import com.pts.common.dto.UserDTO;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.*;
 
-@FeignClient(name = "user") // this use user-service to internal calls
+@FeignClient(name = "user", url = "http://localhost:8086") // this use user-service to internal calls
 public interface UserClient {
 
     // save user
-    @PostMapping("/")
-    ApiResponse<UserDTO> saveUser(UserDTO userDTO);
+    @PostMapping("/users")
+    ApiResponse<UserDTO> saveUser(@RequestBody UserDTO userDTO);
 
     // update user
-    @PutMapping("/")
-    ApiResponse<UserDTO> updateUser(UserDTO userDTO);
+    @PutMapping("/users")
+    ApiResponse<UserDTO> updateUser(@RequestBody UserDTO userDTO);
 
     // get by id
-    @PostMapping("/id/{id}")
+    @GetMapping("/users/id/{id}")
     ApiResponse<UserDTO> getById(@PathVariable("id") String id);// get by id
 
     // get by phone or email
-    @PostMapping("/username/{username}")
+    @GetMapping("/users/username/{username}")
     ApiResponse<UserDTO> getByEmailOrPhoneNumber(@PathVariable("username") String username);
 
 

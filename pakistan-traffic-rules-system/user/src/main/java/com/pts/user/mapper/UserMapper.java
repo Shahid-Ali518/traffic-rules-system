@@ -17,7 +17,7 @@ public class UserMapper {
                 .name(user.getName())
                 .email(user.getEmail())
                 .phoneNumber(user.getPhoneNumber())
-                .password(user.getPassword())
+//                .password(user.getPassword()) // no need to sed password to frontend
                 .userRole(user.getUserRole())
                 .build();
     }

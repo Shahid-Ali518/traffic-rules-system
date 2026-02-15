@@ -17,15 +17,19 @@ public class UserController {
     private UserService userService;
 
     // endpoint to save userinfo
-    @PostMapping("/")
-    public ResponseEntity<ApiResponse<UserDTO>> saveUser(UserDTO userDTO){
+    @PostMapping
+    public ResponseEntity<ApiResponse<UserDTO>> saveUser(@RequestBody UserDTO userDTO){
+
+        System.out.println(userDTO);
         ApiResponse<UserDTO> response = userService.saveUser(userDTO);
+
+
 
         return new ResponseEntity<>(response, HttpStatusCode.valueOf(response.getStatusCode()));
     }
 
     // endpoint to update userinfo
-    @PutMapping("/")
+    @PutMapping
     public ResponseEntity<ApiResponse<UserDTO>> updateUser(UserDTO userDTO){
         ApiResponse<UserDTO> response = userService.updateUser(userDTO);
 
@@ -42,7 +46,7 @@ public class UserController {
 
     // endpoint to get user by email or phone number
     @GetMapping("/username/{username}") // username may be email or phone
-    public ResponseEntity<ApiResponse<UserDTO>> getUserByEmailOrPhoneNumber( @PathVariable String username){
+    public ResponseEntity<ApiResponse<UserDTO>> getUserByEmailOrPhoneNumber( @PathVariable("username") String username){
         ApiResponse<UserDTO> response = userService.findByEmailOrPhoneNumber(username, username);
         return new ResponseEntity<>(response, HttpStatusCode.valueOf(response.getStatusCode()));
     }

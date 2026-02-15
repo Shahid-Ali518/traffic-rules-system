@@ -8,7 +8,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import com.pts.common.enums.UserRole;
-import java.util.UUID;
 
 @Data
 @AllArgsConstructor
@@ -18,15 +17,9 @@ import java.util.UUID;
 public class User {
 
     @Id
-    @Column(length = 24, nullable = false, updatable = false)
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "id", length = 36, nullable = false, updatable = false)
     private String id;
-
-    // generate random id of length 20 characters
-    @PrePersist
-    public void generateId(){
-        if(this.id == null)
-            this.id = UUID.randomUUID().toString();
-    }
 
     @NotBlank(message = "Name is required")
     private String name;
