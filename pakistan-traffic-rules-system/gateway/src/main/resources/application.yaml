@@ -9,32 +9,72 @@ spring:
   main:
     web-application-type: REACTIVE
 
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          secret-key: TaK+HaV&ucCHEPsEVfypW#7g9^k*Z9$V
+
   cloud:
     gateway:
       server:
         webflux:
-          discovery:
-            locator:
-              enabled: true # this discover all services auto like qa, user, traffic
-              lower-case-service-id: true
-
-
+          routes:
+            - id: auth-service
+              uri: lb://auth
+              predicates:
+                - Path=/auth/**
+            - id: user-service
+              uri: lb://user
+              predicates:
+                - Path=/user/**
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
 
-
-# for monitory health and status of each service
 management:
   endpoints:
     web:
       exposure:
-        include: health, info
+        include: health,info
 
-  endpoint:
-    health:
-      show-details: ALWAYS
+
+
+#
+#spring:
+#  application:
+#    name: gateway
+#
+#  main:
+#    web-application-type: REACTIVE
+#
+#  cloud:
+#    gateway:
+#      server:
+#        webflux:
+#          discovery:
+#            locator:
+#              enabled: true # this discover all services auto like qa, user, traffic
+#              lower-case-service-id: true
+#
+#
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka/
+#
+#
+## for monitory health and status of each service
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: health, info
+#
+#  endpoint:
+#    health:
+#      show-details: ALWAYS
 
 
 

@@ -1,5 +1,6 @@
 package com.pts.common.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,6 +13,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Data
 @Builder
+@JsonInclude
 public class ApiResponse<T> {
 
     private boolean success;
